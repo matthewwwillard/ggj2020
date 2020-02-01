@@ -21,15 +21,21 @@ public class CC_GameplayManager : MonoBehaviour
     const int MAX_LEVEL = 5;
     const int MATCHES_PER_LEVEL = 5;
 
+    const int NUM_HEARTS = 3;
+
+    int health;
+
     public static CC_GameplayManager instance;
 
     public float spawnTimer;
+
+    int score = 0;
 
     State state;
 
     public enum State
     {
-        PRE_GAME, PLAYING, POST_GAME
+        PRE_GAME, PLAYING, END_GAME, POST_GAME
     }
 
     void Awake()
@@ -67,6 +73,21 @@ public class CC_GameplayManager : MonoBehaviour
 
         currentSpawnDelay = START_SPAWN_DELAY;
         spawnTimer = currentSpawnDelay;
+
+        health = NUM_HEARTS;
+
+        score = 0;
+        CC_UI.SetScore(0);
+        CC_UI.ResetHearts();
+
+        CC_UI.ShowGameOver(false);
+    }
+
+    void EndGame()
+    {
+        state = State.END_GAME;
+
+        CC_UI.ShowGameOver(true);
     }
 
     void SpawnRobot()
@@ -82,6 +103,13 @@ public class CC_GameplayManager : MonoBehaviour
         robots.Add(rComp);
 
         rComp.Spawn(spawnPosition);
+    }
+
+    void ScorePoints(int s)
+    {
+        score += s;
+
+        CC_UI.SetScore(score);
     }
 
     void ReceiveInput()
@@ -126,15 +154,30 @@ public class CC_GameplayManager : MonoBehaviour
         }
     }
 
-    public void KillRobot(CC_Robot r)
+    public void KillRobot(CC_Robot r, bool takeDamage = false)
     {
         robots.Remove(r);
 
         GameObject.Destroy(r.gameObject);
+
+        if(takeDamage)
+        {
+            TakeDamage();
+        }
+    }
+
+    void TakeDamage()
+    {
+        health--;
+
+        CC_UI.DamageHeart();
+
+        if (health <= 0)
+            EndGame();
     }
 
     public void ScoreMatch(CC_Robot a, CC_Robot b)
     {
-
+        ScorePoints(100);
     }
 }

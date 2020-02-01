@@ -6,7 +6,7 @@ public class CC_PlayerCharacter : MonoBehaviour
 {
     public Vector3 aimVector;
 
-    public const float SPEED = 8.0f;
+    public const float SPEED = 10.0f;
 
     public GameObject[] aimLaser;
 

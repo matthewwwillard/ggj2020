@@ -92,6 +92,10 @@ public class CC_Robot : MonoBehaviour
         timer = MATCH_TIME;
 
         state = State.MATCHED;
+
+        myRigidbody.velocity = Vector3.zero;
+        myRigidbody.isKinematic = true;
+        GetComponent<Collider>().enabled = false;
     }
 
     void Match(CC_Robot otherBot)
@@ -106,7 +110,7 @@ public class CC_Robot : MonoBehaviour
     {
         if(col.gameObject.layer == LayerMask.NameToLayer("Killzone"))
         {
-            CC_GameplayManager.instance.KillRobot(this);
+            CC_GameplayManager.instance.KillRobot(this, true);
         }
     }
 

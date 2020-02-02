@@ -56,8 +56,8 @@ public class CC_RobotPair : MonoBehaviour
         a.transform.localRotation = Quaternion.identity;
         b.transform.localRotation = Quaternion.identity;
 
-        connectionA.DOLocalMove(Vector3.zero, MATCH_DELAY / 2.0f).SetDelay(.5f);
-        connectionB.DOLocalMove(new Vector3(0.0f, 3.05f, 0.0f), MATCH_DELAY / 2.0f).SetDelay(.5f);
-        connectionB.DOLocalRotate(new Vector3(180.0f, 0.0f, 0.0f), MATCH_DELAY / 2.0f).SetDelay(.5f);
+        connectionB.DOLocalMove(Vector3.zero, MATCH_DELAY / 2.0f).SetDelay(.5f);
+        connectionA.DOLocalMove(new Vector3(0.0f, 3.05f, 0.0f), MATCH_DELAY / 2.0f).SetDelay(.5f);
+        connectionA.DOLocalRotate(new Vector3(180.0f, 0.0f, 0.0f), MATCH_DELAY / 2.0f).SetDelay(.5f);
     }
 }

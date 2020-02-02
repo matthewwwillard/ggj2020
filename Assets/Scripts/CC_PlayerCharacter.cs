@@ -16,6 +16,8 @@ public class CC_PlayerCharacter : MonoBehaviour
 
     public LayerMask laserMask;
 
+    public AudioSource audio;
+
     Rigidbody myRigidbody;
 
     public CC_Robot currentTarget;
@@ -30,6 +32,8 @@ public class CC_PlayerCharacter : MonoBehaviour
     void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
+
+        audio = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -64,6 +68,9 @@ public class CC_PlayerCharacter : MonoBehaviour
             projectedPos.x = -9.0f;
 
         transform.position = projectedPos;
+
+        if(!audio.isPlaying)
+            audio.Play();
     }
 
     public void MoveRight()
@@ -79,11 +86,17 @@ public class CC_PlayerCharacter : MonoBehaviour
             projectedPos.x = 9.0f;
 
         transform.position = projectedPos;
+
+
+        if (!audio.isPlaying)
+            audio.Play();
     }
 
     public void StopMoving()
     {
         myRigidbody.velocity = Vector3.zero;
+
+        audio.Pause();
     }
 
     public void FireInput()

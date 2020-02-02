@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CC_Robot : MonoBehaviour
 {
+   
     public int type;
 
     public Animator anim;
@@ -13,6 +14,8 @@ public class CC_Robot : MonoBehaviour
     public Sprite defaultFace;
     public Sprite knockbackFace;
     public Sprite matchFace;
+
+    public AudioSource audio;
 
     public SpriteRenderer face;
 
@@ -36,6 +39,8 @@ public class CC_Robot : MonoBehaviour
     void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
+
+        audio = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -176,8 +181,12 @@ public class CC_Robot : MonoBehaviour
             if (otherBot != null && otherBot.type == type)
             {
                 if (otherBot.state != State.MATCHED)
+                {
                     Match(otherBot);
+                }
             }
+
+            audio.Play();
         }
     }
 }

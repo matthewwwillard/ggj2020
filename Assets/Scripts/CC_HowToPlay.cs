@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CC_HowToPlay : MonoBehaviour
 {
     public GameObject[] screens;
+    public GameObject textInstance;
+    public Transform parentLeaderboard;
+    public CC_LeaderboardManager leaderboard;
+    
     int currentScreen = 0;
 
     public void Awake()
@@ -17,6 +23,23 @@ public class CC_HowToPlay : MonoBehaviour
             screens[i].SetActive(false);
         }
         screens[currentScreen].SetActive(true);
+        
+        leaderboard.GetTopXScores(4, scores =>
+        {
+            if (scores == null)
+            {
+                Debug.Log("Error getting scores!");
+                return;
+            }
+            
+            foreach(Scores s in scores)
+            {
+                Debug.Log(s.playerName);
+                GameObject g = Instantiate(textInstance, parentLeaderboard) as GameObject;
+                g.GetComponent<Text>().text = s.playerName + " - " + s.score;
+            }
+        });
+        
     }
 
     public void Update()

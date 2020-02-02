@@ -97,13 +97,15 @@ public class CC_LeaderboardManager : MonoBehaviour
     {
         HTTPRequest request = new HTTPRequest(new Uri("https://api.ezleaderboards.com/api/v1/scores/cybercupid3030/main/top/"+number), ((originalRequest, response) =>
         {
-            if (response.IsSuccess && response.StatusCode == 200)
+            if (response.IsSuccess)
             {
                 LeaderboardReturn l = JsonConvert.DeserializeObject<LeaderboardReturn>(response.DataAsText);
+                Debug.Log(l.scores);
                 callback(l.scores);
             }
             else
             {
+                Debug.Log(response.DataAsText);
                 callback(null);
             }
             

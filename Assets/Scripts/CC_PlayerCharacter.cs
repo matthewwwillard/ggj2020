@@ -115,7 +115,7 @@ public class CC_PlayerCharacter : MonoBehaviour
         CC_SondManager.instance.PlayLaserSound();
         if (currentTarget != null)
         {
-            Debug.Log("Shoot a guy!");
+            //Debug.Log("Shoot a guy!");
             currentTarget.Shot(targetDirection, targetPoint);
 
             GameObject hitInstance = GameObject.Instantiate(hitEffect);
@@ -148,6 +148,8 @@ public class CC_PlayerCharacter : MonoBehaviour
         aimVector = aim;
 
         transform.rotation = Quaternion.LookRotation(aim, Vector3.up);
+
+        currentTarget = null;
 
         RaycastHit hit;
         if (Physics.Raycast(aimLaser[0].transform.position, transform.forward, out hit, 100.0f, laserMask))
@@ -185,6 +187,7 @@ public class CC_PlayerCharacter : MonoBehaviour
                 else
                 {
                     aimLaser[1].SetActive(false);
+                    currentTarget = null;
                 }
             }
             else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Robot"))
@@ -197,5 +200,10 @@ public class CC_PlayerCharacter : MonoBehaviour
                 aimLaser[1].SetActive(false);
             }
         }
+        else
+        {
+            currentTarget = null;
+        }
+
     }
 }

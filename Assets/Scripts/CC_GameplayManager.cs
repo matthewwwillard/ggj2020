@@ -24,7 +24,7 @@ public class CC_GameplayManager : MonoBehaviour
 
     const float SPAWN_SPEED_UP_PER_LEVEL = .1f;
 
-    const int MAX_LEVEL = 5;
+    const int MAX_LEVEL = 15;
     const int MATCHES_PER_LEVEL = 5;
 
     const int NUM_HEARTS = 3;
@@ -205,13 +205,19 @@ public class CC_GameplayManager : MonoBehaviour
 
         if(level < MAX_LEVEL)
         {
+           
+
             matchesToRampUp--;
+
+            Debug.Log("Matches to ramp up: " + matchesToRampUp);
 
             if (matchesToRampUp <= 0)
             {
                 matchesToRampUp = MATCHES_PER_LEVEL;
-
+                
                 level++;
+
+                Debug.Log("Current Spawn Delay: " + currentSpawnDelay);
 
                 currentSpawnDelay -= SPAWN_SPEED_UP_PER_LEVEL;
             }

@@ -30,6 +30,10 @@ public class CC_Robot : MonoBehaviour
     const float MATCH_TIME = 2.0f;
     const float KNOCKBACK_TIME = .75f;
 
+    int shotsTaken = 0;
+
+    const float MAX_SPEED_PER_SHOT = 1.0f;
+
     float timer;
 
     Vector2 knockbackDirection;
@@ -63,8 +67,8 @@ public class CC_Robot : MonoBehaviour
         {
             case State.DEFAULT:
                 //transform.position = transform.position - Vector.forward * BASE_SPEED * Time.deltaTime;
-                myRigidbody.AddForce(-10.0f * Vector3.forward, ForceMode.Acceleration);
-                if (myRigidbody.velocity.magnitude > BASE_SPEED)
+                myRigidbody.AddForce((-10.0f + (-1.0f * shotsTaken)) * Vector3.forward, ForceMode.Acceleration);
+                if (myRigidbody.velocity.magnitude > BASE_SPEED + (shotsTaken * MAX_SPEED_PER_SHOT))
                     myRigidbody.velocity = myRigidbody.velocity.normalized * BASE_SPEED;
                 break;
             case State.KNOCK_BACK:
@@ -100,6 +104,8 @@ public class CC_Robot : MonoBehaviour
         knockbackDirection = direction;
 
         myRigidbody.AddForceAtPosition(25.0f * direction, point, ForceMode.Impulse);
+
+        shotsTaken++;
 
         //myRigidbody.velocity = direction * KNOCKBACK_SPEED;
     }

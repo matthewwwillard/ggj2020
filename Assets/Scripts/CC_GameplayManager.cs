@@ -35,7 +35,7 @@ public class CC_GameplayManager : MonoBehaviour
 
     public float spawnTimer;
 
-    int score = 0;
+    public int score = 0;
 
     State state;
 

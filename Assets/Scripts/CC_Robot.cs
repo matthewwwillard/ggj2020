@@ -10,14 +10,14 @@ public class CC_Robot : MonoBehaviour
 
     public enum State
     {
-        DEFAULT, KNOCK_BACK, MATCHED
+        DEFAULT, KNOCK_BACK, MATCHED, DISABLED
     }
 
-    const float BASE_SPEED = 4.0f;
+    const float BASE_SPEED = 2.5f;
     const float KNOCKBACK_SPEED = 10.0f;
 
     const float MATCH_TIME = 2.0f;
-    const float KNOCKBACK_TIME = 1.0f;
+    const float KNOCKBACK_TIME = .75f;
 
     float timer;
 
@@ -50,6 +50,9 @@ public class CC_Robot : MonoBehaviour
         {
             case State.DEFAULT:
                 //transform.position = transform.position - Vector.forward * BASE_SPEED * Time.deltaTime;
+                myRigidbody.AddForce(-5.0f * Vector3.forward, ForceMode.Acceleration);
+                if (myRigidbody.velocity.magnitude > BASE_SPEED)
+                    myRigidbody.velocity = myRigidbody.velocity.normalized * BASE_SPEED;
                 break;
             case State.KNOCK_BACK:
                 timer -= Time.deltaTime;
@@ -71,7 +74,7 @@ public class CC_Robot : MonoBehaviour
         }
     }
 
-    public void Shot(Vector3 direction)
+    public void Shot(Vector3 direction, Vector3 point)
     {
         state = State.KNOCK_BACK;
 
@@ -79,12 +82,16 @@ public class CC_Robot : MonoBehaviour
 
         knockbackDirection = direction;
 
-        myRigidbody.velocity = direction * KNOCKBACK_SPEED;
+        myRigidbody.AddForceAtPosition(25.0f * direction, point, ForceMode.Impulse);
+
+        //myRigidbody.velocity = direction * KNOCKBACK_SPEED;
     }
 
     public void EnterDefaultState()
     {
-        myRigidbody.velocity = Vector3.forward * -BASE_SPEED;
+        state = State.DEFAULT;
+
+        //myRigidbody.velocity = Vector3.forward * -BASE_SPEED;
     }
 
     public void EnterMatchedState()
@@ -96,6 +103,16 @@ public class CC_Robot : MonoBehaviour
         myRigidbody.velocity = Vector3.zero;
         myRigidbody.isKinematic = true;
         GetComponent<Collider>().enabled = false;
+    }
+
+    public void EnterDisableState()
+    {
+        state = State.DISABLED;
+
+        gameObject.layer = LayerMask.NameToLayer("DisabledRobot");
+        
+        myRigidbody.velocity = Vector3.forward * -BASE_SPEED;
+        myRigidbody.constraints = 0;
     }
 
     void Match(CC_Robot otherBot)
@@ -111,6 +128,10 @@ public class CC_Robot : MonoBehaviour
         if(col.gameObject.layer == LayerMask.NameToLayer("Killzone"))
         {
             CC_GameplayManager.instance.KillRobot(this, true);
+        }
+        else if (col.gameObject.layer == LayerMask.NameToLayer("DisableZone"))
+        {
+            EnterDisableState();
         }
     }
 

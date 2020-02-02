@@ -14,7 +14,7 @@ public class CC_GameplayManager : MonoBehaviour
 
     float currentSpawnDelay;
 
-    const float START_SPAWN_DELAY = 1f;
+    const float START_SPAWN_DELAY = 1.2f;
 
     const float SPAWN_SPEED_UP_PER_LEVEL = .1f;
 
@@ -88,13 +88,15 @@ public class CC_GameplayManager : MonoBehaviour
         state = State.END_GAME;
 
         CC_UI.ShowGameOver(true);
+        
+        player.StopMoving();
     }
 
     void SpawnRobot()
     {
         spawnTimer = currentSpawnDelay;
 
-        Vector3 spawnPosition = spawnLine.transform.position + Random.Range(-7.0f, 7.0f) * Vector3.right;
+        Vector3 spawnPosition = spawnLine.transform.position + Random.Range(-8.0f, 8.0f) * Vector3.right;
 
         GameObject r = GameObject.Instantiate(robotPrefabs[Random.Range(0, robotPrefabs.Length)].gameObject, transform);
 
@@ -150,7 +152,7 @@ public class CC_GameplayManager : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            player.FireLaser();
+            player.FireInput();
         }
     }
 

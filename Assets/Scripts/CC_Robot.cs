@@ -52,7 +52,7 @@ public class CC_Robot : MonoBehaviour
         {
             case State.DEFAULT:
                 //transform.position = transform.position - Vector.forward * BASE_SPEED * Time.deltaTime;
-                myRigidbody.AddForce(-5.0f * Vector3.forward, ForceMode.Acceleration);
+                myRigidbody.AddForce(-10.0f * Vector3.forward, ForceMode.Acceleration);
                 if (myRigidbody.velocity.magnitude > BASE_SPEED)
                     myRigidbody.velocity = myRigidbody.velocity.normalized * BASE_SPEED;
                 break;
@@ -105,6 +105,8 @@ public class CC_Robot : MonoBehaviour
         myRigidbody.velocity = Vector3.zero;
         myRigidbody.isKinematic = true;
         GetComponent<Collider>().enabled = false;
+
+        anim.SetTrigger("Match");
     }
 
     public void EnterDisableState()
@@ -150,15 +152,17 @@ public class CC_Robot : MonoBehaviour
         //    }
         //}
 
-        ContactPoint cp = col.GetContact(0);
-
-        CC_Robot otherBot = cp.otherCollider.gameObject.GetComponent<CC_Robot>();
-
-        if(otherBot!= null && otherBot.type == type)
+        if (state == State.KNOCK_BACK)
         {
-            if(otherBot.state != State.MATCHED)
-                Match(otherBot);
+            ContactPoint cp = col.GetContact(0);
+
+            CC_Robot otherBot = cp.otherCollider.gameObject.GetComponent<CC_Robot>();
+
+            if (otherBot != null && otherBot.type == type)
+            {
+                if (otherBot.state != State.MATCHED)
+                    Match(otherBot);
+            }
         }
-        
     }
 }

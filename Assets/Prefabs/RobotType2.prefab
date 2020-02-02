@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  anim: {fileID: 0}
+  anim: {fileID: 454666611778028914}
   state: 0
 --- !u!54 &2483227267126593205
 Rigidbody:
@@ -411,6 +411,12 @@ PrefabInstance:
 --- !u!4 &454666611787590326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400036, guid: a61a79c752e5f1948ba1b6bc35507cce,
+    type: 3}
+  m_PrefabInstance: {fileID: 454666611787460626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &454666611778028914 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: a61a79c752e5f1948ba1b6bc35507cce,
     type: 3}
   m_PrefabInstance: {fileID: 454666611787460626}
   m_PrefabAsset: {fileID: 0}

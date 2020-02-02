@@ -97,6 +97,7 @@ public class CC_PlayerCharacter : MonoBehaviour
     
     public void FireLaser()
     {
+        CC_SondManager.instance.PlayLaserSound();
         if (currentTarget != null)
         {
             Debug.Log("Shoot a guy!");

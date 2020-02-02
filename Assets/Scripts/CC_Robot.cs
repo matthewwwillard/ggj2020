@@ -78,6 +78,8 @@ public class CC_Robot : MonoBehaviour
 
     public void Shot(Vector3 direction, Vector3 point)
     {
+        CC_SondManager.instance.PlayHit();
+        
         state = State.KNOCK_BACK;
 
         timer = KNOCKBACK_TIME;
@@ -121,6 +123,7 @@ public class CC_Robot : MonoBehaviour
 
     void Match(CC_Robot otherBot)
     {
+        CC_SondManager.instance.PlayMatch();
         EnterMatchedState();
         otherBot.EnterMatchedState();
 

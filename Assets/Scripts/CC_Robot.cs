@@ -10,6 +10,12 @@ public class CC_Robot : MonoBehaviour
 
     public State state = State.DEFAULT;
 
+    public Sprite defaultFace;
+    public Sprite knockbackFace;
+    public Sprite matchFace;
+
+    public SpriteRenderer face;
+
     public enum State
     {
         DEFAULT, KNOCK_BACK, MATCHED, DISABLED
@@ -80,6 +86,8 @@ public class CC_Robot : MonoBehaviour
     {
         state = State.KNOCK_BACK;
 
+        face.sprite = knockbackFace;
+
         timer = KNOCKBACK_TIME;
 
         knockbackDirection = direction;
@@ -93,6 +101,8 @@ public class CC_Robot : MonoBehaviour
     {
         state = State.DEFAULT;
 
+        face.sprite = defaultFace;
+
         //myRigidbody.velocity = Vector3.forward * -BASE_SPEED;
     }
 
@@ -105,6 +115,8 @@ public class CC_Robot : MonoBehaviour
         myRigidbody.velocity = Vector3.zero;
         myRigidbody.isKinematic = true;
         GetComponent<Collider>().enabled = false;
+
+        face.sprite = matchFace;
 
         anim.SetTrigger("Match");
     }

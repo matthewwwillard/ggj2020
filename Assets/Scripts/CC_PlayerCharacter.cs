@@ -11,7 +11,9 @@ public class CC_PlayerCharacter : MonoBehaviour
     
     public GameObject[] aimLaser;
     public GameObject[] fireLasers;
-    
+
+    public GameObject hitEffect;
+
     public LayerMask laserMask;
 
     Rigidbody myRigidbody;
@@ -102,6 +104,12 @@ public class CC_PlayerCharacter : MonoBehaviour
         {
             Debug.Log("Shoot a guy!");
             currentTarget.Shot(targetDirection, targetPoint);
+
+            GameObject hitInstance = GameObject.Instantiate(hitEffect);
+
+            hitInstance.transform.position = targetPoint;
+
+            GameObject.Destroy(hitInstance, 2.0f);
         }
 
         anim.SetTrigger("Fire");

@@ -167,6 +167,7 @@ MonoBehaviour:
   fireLasers:
   - {fileID: 6498532197279155617}
   - {fileID: 5197979348695209024}
+  hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   laserMask:
     serializedVersion: 2
     m_Bits: 513

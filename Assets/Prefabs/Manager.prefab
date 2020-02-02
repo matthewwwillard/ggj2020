@@ -50,6 +50,8 @@ MonoBehaviour:
   - {fileID: 2772256870981799371, guid: bdbecd23eede73e4bb89a1fde0b43efe, type: 3}
   - {fileID: 2772256870981799371, guid: b934d4ff476178c41b282ee0532f45ad, type: 3}
   - {fileID: 2772256870981799371, guid: b6b67be73ff4cb64a855a55ca38b07fd, type: 3}
+  explosionPrefab: {fileID: 1150934714579380, guid: 779aa8c25fbd0e1488637639c9fff976,
+    type: 3}
   spawnLine: {fileID: 0}
   aimPoint: {fileID: 0}
   pairPrefab: {fileID: 3056173075877753473, guid: 1c14896e02aff054482bfa88a649fbec,

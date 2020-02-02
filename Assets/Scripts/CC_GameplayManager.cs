@@ -9,6 +9,7 @@ public class CC_GameplayManager : MonoBehaviour
 
     public CC_Robot[] robotPrefabs;
 
+    public GameObject explosionPrefab;
     public GameObject spawnLine;
     public GameObject aimPoint;
 
@@ -172,6 +173,13 @@ public class CC_GameplayManager : MonoBehaviour
         if(takeDamage)
         {
             TakeDamage();
+
+            GameObject explosion = GameObject.Instantiate(explosionPrefab);
+
+            explosion.transform.position = r.transform.position;
+
+            GameObject.Destroy(explosion, 2.0f);
+
         }
     }
 

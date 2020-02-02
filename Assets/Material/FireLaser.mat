@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AimLaser
+  m_Name: FireLaser
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
   m_LightmapFlags: 2
@@ -74,5 +74,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.25699997, b: 0.8707833, a: 0.53333336}
+    - _Color: {r: 1, g: 0.514151, b: 0.9151693, a: 0.77254903}
     - _EmissionColor: {r: 0.6226415, g: 0.14978638, b: 0.14978638, a: 1}

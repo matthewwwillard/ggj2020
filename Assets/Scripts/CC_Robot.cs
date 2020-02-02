@@ -6,6 +6,8 @@ public class CC_Robot : MonoBehaviour
 {
     public int type;
 
+    public Animator anim;
+
     public State state = State.DEFAULT;
 
     public enum State
@@ -64,12 +66,12 @@ public class CC_Robot : MonoBehaviour
                 //transform.position = transform
                 break;
             case State.MATCHED:
-                timer -= Time.deltaTime;
+                //timer -= Time.deltaTime;
 
-                if(timer <= 0.0f)
-                {
-                    CC_GameplayManager.instance.KillRobot(this);
-                }
+                //if(timer <= 0.0f)
+                //{
+                //    CC_GameplayManager.instance.KillRobot(this);
+                //}
                 break;
         }
     }

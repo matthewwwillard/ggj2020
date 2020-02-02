@@ -12,6 +12,8 @@ public class CC_GameplayManager : MonoBehaviour
     public GameObject spawnLine;
     public GameObject aimPoint;
 
+    public CC_RobotPair pairPrefab;
+
     float currentSpawnDelay;
 
     const float START_SPAWN_DELAY = 1.2f;
@@ -180,6 +182,20 @@ public class CC_GameplayManager : MonoBehaviour
 
     public void ScoreMatch(CC_Robot a, CC_Robot b)
     {
+        GameObject pair = GameObject.Instantiate(pairPrefab.gameObject);
+
+        CC_RobotPair comp = pair.GetComponent<CC_RobotPair>();
+
+        comp.Spawn(a, b);
+
         ScorePoints(100);
+    }
+
+    public void ClearPair(CC_RobotPair p)
+    {
+        KillRobot(p.robotA);
+        KillRobot(p.robotB);
+
+        GameObject.Destroy(p.gameObject);
     }
 }

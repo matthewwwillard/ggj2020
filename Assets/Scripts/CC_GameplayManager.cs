@@ -16,7 +16,10 @@ public class CC_GameplayManager : MonoBehaviour
 
     float currentSpawnDelay;
 
-    const float START_SPAWN_DELAY = 1.2f;
+    int matchesToRampUp = 0;
+    int level = 0;
+
+    const float START_SPAWN_DELAY = 1.6f;
 
     const float SPAWN_SPEED_UP_PER_LEVEL = .1f;
 
@@ -77,6 +80,8 @@ public class CC_GameplayManager : MonoBehaviour
         spawnTimer = currentSpawnDelay;
 
         health = NUM_HEARTS;
+
+        matchesToRampUp = MATCHES_PER_LEVEL;
 
         score = 0;
         CC_UI.SetScore(0);
@@ -189,6 +194,20 @@ public class CC_GameplayManager : MonoBehaviour
         comp.Spawn(a, b);
 
         ScorePoints(100);
+
+        if(level < MAX_LEVEL)
+        {
+            matchesToRampUp--;
+
+            if (matchesToRampUp <= 0)
+            {
+                matchesToRampUp = MATCHES_PER_LEVEL;
+
+                level++;
+
+                currentSpawnDelay -= SPAWN_SPEED_UP_PER_LEVEL;
+            }
+        } 
     }
 
     public void ClearPair(CC_RobotPair p)

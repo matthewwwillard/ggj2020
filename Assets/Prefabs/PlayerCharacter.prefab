@@ -172,7 +172,8 @@ MonoBehaviour:
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   laserMask:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 16897
+  audio: {fileID: 0}
   currentTarget: {fileID: 0}
   targetPoint: {x: 0, y: 0, z: 0}
   targetDirection: {x: 0, y: 0, z: 0}

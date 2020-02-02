@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1436,6 +1436,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ac4e3c4b44affa4e8561ec5a80e094a, type: 3}
+--- !u!114 &57018998820092079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5728918334162556058, guid: 5ac4e3c4b44affa4e8561ec5a80e094a,
+    type: 3}
+  m_PrefabInstance: {fileID: 57018998820092078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &57018998820092080 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 328475094572343036, guid: 5ac4e3c4b44affa4e8561ec5a80e094a,
+    type: 3}
+  m_PrefabInstance: {fileID: 57018998820092078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &57018998820092081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7267655045183657213, guid: 5ac4e3c4b44affa4e8561ec5a80e094a,
+    type: 3}
+  m_PrefabInstance: {fileID: 57018998820092078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &216966807713444633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1611,6 +1641,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3373082944825709569, guid: c3a5b8276e90cb041bb72977767389ad,
+        type: 3}
+      propertyPath: playerNameText
+      value: 
+      objectReference: {fileID: 57018998820092080}
+    - target: {fileID: 3373082944825709569, guid: c3a5b8276e90cb041bb72977767389ad,
+        type: 3}
+      propertyPath: inputHolder
+      value: 
+      objectReference: {fileID: 57018998820092081}
+    - target: {fileID: 3373082944825709569, guid: c3a5b8276e90cb041bb72977767389ad,
+        type: 3}
+      propertyPath: requestText
+      value: 
+      objectReference: {fileID: 57018998820092079}
     - target: {fileID: 3373082945382246872, guid: c3a5b8276e90cb041bb72977767389ad,
         type: 3}
       propertyPath: source

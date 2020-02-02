@@ -5,6 +5,7 @@ using System.Text;
 using BestHTTP;
 using Newtonsoft.Json;
 using TMPro;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class Scores
@@ -13,9 +14,13 @@ public class Scores
     public string playerName { get; set; }
 }
 
+public class SaveScore
+{
+    public Scores score { get; set; }
+}
 public class LeaderboardReturn
 {
-    public Scores[] scores;
+    public Scores[] scores { get; set; }
 }
 
 public class CC_LeaderboardManager : MonoBehaviour
@@ -34,6 +39,13 @@ public class CC_LeaderboardManager : MonoBehaviour
         this.inputHolder.SetActive(false);
         this.requestText.text = "Attempting to save your score...";
         this.requestText.gameObject.SetActive(true);
+
+        if (CC_GameplayManager.instance.score <= 0)
+        {
+            this.requestText.text = "You need to try better!";
+            return;
+        }
+        
         this.PostScore(CC_GameplayManager.instance.score, playerNameText.text, (bool success) =>
         {
             if (success)
@@ -61,15 +73,20 @@ public class CC_LeaderboardManager : MonoBehaviour
         {
             if (response.IsSuccess && response.StatusCode == 200)
             {
+                
                 callback(true);
             }
             else
             {
+                Debug.Log(response.DataAsText);
                 callback(false);
             }
         }));
+
+        Scores s = new Scores() {playerName = playername, score = score};
         
-        request.RawData =  Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(new Scores(){playerName = playername, score = score}));
+        
+        request.RawData =  Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(new SaveScore() {score = s}));
         request.SetHeader("Content-Type", "application/json; charset=UTF-8");
         request.AddHeader("gameToken","5ce83910-e6e4-4e66-9f8b-6323482d969b");
         request.AddHeader("leaderboardToken","c3b35c98-d7d1-4701-98a6-0cecc011857c");

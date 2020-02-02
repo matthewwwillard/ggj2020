@@ -59,4 +59,9 @@ public class CC_UI : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void ClosePressed()
+    {
+        Application.Quit();
+    }
 }
